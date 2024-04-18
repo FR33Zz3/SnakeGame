@@ -1,30 +1,34 @@
 package com.example.SnakeGame;
 
 public class Snake {
-
     public int Length = 2;
     public int Direction = 0;
 
-    public  int SnakeX [] = new int[300];
-    public  int SnakeY [] = new int[300];
+    public int SnakeX[] = new int[100];
+    public int SnakeY[] = new int[100];
 
-    public Snake(int x1,int x2,int y1,int y2){
+    public Snake(int x0, int y0, int x1, int y1) {
+        SnakeX[0] = x0;
         SnakeX[0] = x1;
-        SnakeX[0] = x2;
-        SnakeY[0] = y1;
-        SnakeY[0] = y2;
-
+        SnakeX[1] = y0;
+        SnakeX[1] = y1;
     }
-    public void Move(){
 
-        for (int l=Length; l>0; l--){
-        SnakeX[1] = SnakeX[1-1];
-        SnakeY[1] = SnakeY[1-1];
+    public void move() {
+        for(int l= Length; l > 0; l--) {
+            SnakeX[0] = SnakeX[l-1];
+            SnakeY[0] = SnakeY[l-1];
         }
+        if(Direction == 0) SnakeX[0]++;
+        if(Direction == 1) SnakeY[0]++;
+        if(Direction == 2) SnakeX[0]--;
+        if(Direction == 3) SnakeY[0]--;
 
-        if (Direction ==0) SnakeY[0]--;
-        if (Direction ==2) SnakeY[0]++;
-        if (Direction ==1) SnakeX[0]++;
-        if (Direction ==3) SnakeX[0]--;
+        for (int l = Length-1; l>0; l--) {
+            if ((SnakeX[0] == SnakeX[l]) & (SnakeY[0] == SnakeY[l])) Length = l-2;
+        }
+        if(Length < 2) Length = 2;
+
+
     }
 }
