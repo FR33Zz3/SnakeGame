@@ -5,8 +5,6 @@ import java.awt. * ;
 import java.awt.event.ActionEvent;
 import java.awt.Graphics;
 import java.awt.event.ActionListener;
-
-
 /*
     * Создание Окна
  */
@@ -17,11 +15,13 @@ public class GameMain extends JPanel implements ActionListener {
     public static final int Height = 20;
     public static final int Speed = 5;
 
-    Snake Location = new Snake(10, 10, 9, 10);
-    Timer Timer = new Timer(1000/Speed, this);
+    Snake location = new Snake(10, 10, 9, 10);
+    Timer timer = new Timer(1000/Speed, this);
 
     public GameMain() {
-        Timer.start();
+        timer.start();
+        addKeyListener(new Keyboard());
+        setFocusable(true);
     }
     /*
         * Графика
@@ -43,9 +43,9 @@ public class GameMain extends JPanel implements ActionListener {
         /*
          * Отрисовка Змейки
          */
-        for (int l = 0; l < Location.Length; l++) {
+        for (int l = 0; l < location.Length; l++) {
             g.setColor(Color.cyan);
-            g.fillRect(Location.SnakeX[l] * Size + 1, Location.SnakeY[l] * Size + 1, Size - 1, Size - 1);
+            g.fillRect(location.SnakeX[l] * Size + 1, location.SnakeY[l] * Size + 1, Size - 1, Size - 1);
         }
     }
     /*
@@ -62,7 +62,7 @@ public class GameMain extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Location.move();
+        location.move();
         repaint();
     }
 

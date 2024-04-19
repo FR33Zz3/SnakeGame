@@ -2,7 +2,7 @@ package com.example.SnakeGame;
 
 public class Snake {
     public int Length = 2;
-    public int Direction = 0;
+    public static int Direction = 0;
 
     public int SnakeX[] = new int[100];
     public int SnakeY[] = new int[100];
@@ -13,6 +13,8 @@ public class Snake {
         SnakeX[1] = y0;
         SnakeX[1] = y1;
     }
+
+
 
     public void move() {
         for(int l= Length; l > 0; l--) {
