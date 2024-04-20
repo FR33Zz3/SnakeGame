@@ -1,7 +1,7 @@
 package com.example.SnakeGame;
 
 public class Snake {
-    public int Length = 2;
+    public int Length = 4;
     public static int Direction = 0;
 
     public int SnakeX[] = new int[100];
@@ -9,17 +9,17 @@ public class Snake {
 
     public Snake(int x0, int y0, int x1, int y1) {
         SnakeX[0] = x0;
-        SnakeX[0] = x1;
-        SnakeX[1] = y0;
-        SnakeX[1] = y1;
+        SnakeY[0] = y0;
+        SnakeX[1] = x1;
+        SnakeY[1] = y1;
     }
 
 
 
     public void move() {
         for(int l= Length; l > 0; l--) {
-            SnakeX[0] = SnakeX[l-1];
-            SnakeY[0] = SnakeY[l-1];
+            SnakeX[l] = SnakeX[l-1];
+            SnakeY[l] = SnakeY[l-1];
         }
         if(Direction == 0) SnakeX[0]++;
         if(Direction == 1) SnakeY[0]++;
