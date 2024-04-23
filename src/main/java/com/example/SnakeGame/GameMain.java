@@ -15,6 +15,7 @@ public class GameMain extends JPanel implements ActionListener {
     public static final int Height = 20;
     public static final int Speed = 5;
 
+    Apple apple = new Apple((int) (Math.random()*Width), (int) (Math.random()*Height));
     Snake location = new Snake(10, 10, 9, 10);
     Timer timer = new Timer(1000/Speed, this);
 
@@ -28,9 +29,9 @@ public class GameMain extends JPanel implements ActionListener {
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(Color.white);
-        g.fillRect(0,0,Width * Size, Height * Size);
         g.setColor(Color.black);
+        g.fillRect(0,0,Width * Size, Height * Size);
+        g.setColor(Color.green);
         /*
          * Отрисовка сетки
          */
@@ -44,9 +45,15 @@ public class GameMain extends JPanel implements ActionListener {
          * Отрисовка Змейки
          */
         for (int l = 0; l < location.Length; l++) {
-            g.setColor(Color.cyan);
+            g.setColor(Color.green);
             g.fillRect(location.SnakeX[l] * Size + 1, location.SnakeY[l] * Size + 1, Size - 1, Size - 1);
         }
+        g.setColor(Color.red);
+        g.fillRect(apple.posX*Size, apple.posY*Size,Size,Size);
+
+        /*
+         * Отрисовка яблока
+         */
     }
     /*
         * Настройка окна
@@ -63,6 +70,10 @@ public class GameMain extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         location.move();
+        if ((location.SnakeX[0] == apple.posX) & (location.SnakeY[0] == apple.posY)) {
+            apple.setRandomPosition();
+            location.Length++;
+        }
         repaint();
     }
 
