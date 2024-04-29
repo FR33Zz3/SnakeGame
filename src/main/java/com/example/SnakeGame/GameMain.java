@@ -61,7 +61,7 @@ public class GameMain extends JPanel implements ActionListener {
     public static void main(String[] args) {
         JFrame jf = new JFrame("Snake Game");
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jf.setSize(Width * Size, Height * Size);
+        jf.setSize(Width * Size+7, Height * Size+10);
         jf.setResizable(false);
         jf.add(new GameMain());
         jf.setVisible(true);

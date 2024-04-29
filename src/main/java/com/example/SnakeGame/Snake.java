@@ -15,6 +15,15 @@ public class Snake {
     }
 
     public void move() {
+
+        if(SnakeX[0] > GameMain.Width) SnakeX[0] = 0;
+        if(SnakeX[0] < 0) SnakeX[0] = GameMain.Width-1;
+
+        if(SnakeY[0] > GameMain.Height) SnakeY[0] = 0;
+        if(SnakeY[0] < 0) SnakeY[0] = GameMain.Height-1;
+
+
+
         for(int l= Length; l > 0; l--) {
             SnakeX[l] = SnakeX[l-1];
             SnakeY[l] = SnakeY[l-1];
@@ -24,10 +33,9 @@ public class Snake {
         if(Direction == 2) SnakeX[0]--;
         if(Direction == 3) SnakeY[0]--;
 
-        /*for (int l = Length-1; l>0; l--) {
-        * Столковение змейки с объектами
+        for (int l = Length-1; l>0; l--) {
             if ((SnakeX[0] == SnakeX[l]) & (SnakeY[0] == SnakeY[l])) Length = l-2;
-        }*/
+        }
         if(Length < 2) Length = 2;
 
 
